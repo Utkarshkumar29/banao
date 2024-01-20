@@ -66,7 +66,7 @@ const handleUserLogin=async(req,res)=>{
 const handleUpdatePassword=async(req,res)=>{
     const {email,password}=req.body
     try {
-        const user=await Register.findOne({email})
+        const user=await RegisterModel.findOne({email})
         if(!user){
             return res.status(404).json("Email not found")
         }else{
