@@ -42,7 +42,8 @@ const handleUserLogin=async(req,res)=>{
                 jwt.sign({
                     userId:userDocs._id,
                     name:userDocs.name,
-                    email:userDocs.email
+                    email:userDocs.email,
+                    image:userDocs.image
                 },jwtSecret,{},(err,token)=>{
                     if(err){
                         throw err
