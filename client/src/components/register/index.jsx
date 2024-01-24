@@ -27,7 +27,7 @@ const Register=()=>{
             image
         }
         try {
-            const response=await axios.post('/register',data)
+            const response=await axios.post('https://banao-hjcv.onrender.com/register',data)
             const result=response.data
             setRedirect(true)
             console.log(result)
@@ -43,7 +43,7 @@ const Register=()=>{
             data.append("photos", files[i])
         }
         try {
-            const response = await axios.post("/upload", data, {
+            const response = await axios.post("https://banao-hjcv.onrender.com/upload", data, {
                 headers: { "Content-Type": "multipart/form-data" },
         })
         const { data: filenames } = response
@@ -81,7 +81,7 @@ const Register=()=>{
                         <ErrorMessage>Password doesn't match</ErrorMessage>
                     )}
                     <Input type="file" accept="image/*" onChange={uploadPhoto}/>
-                    {image && <img src={`http://localhost:4000/uploads/${image}`} alt="Selected Image" style={{paddingBottom:"5px"}}/>}
+                    {image && <img src={`https://banao-hjcv.onrender.com/uploads/${image}`} alt="Selected Image" style={{paddingBottom:"5px"}}/>}
                     <StyledButton type="Submit">Register</StyledButton>
                     <LoginLink>
                         <p>Already have a Account?</p>

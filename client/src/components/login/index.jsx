@@ -12,7 +12,7 @@ const Login=()=>{
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('/login', { email, password })
+            const response = await axios.post('https://banao-hjcv.onrender.com/login', { email, password })
             if (response.status === 200) {
                 setRedirect(true)
             } else {

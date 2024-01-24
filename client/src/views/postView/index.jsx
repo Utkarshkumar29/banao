@@ -21,7 +21,7 @@ const PostView=()=>{
 
     const fetchUserPost=async()=>{
         try {
-            const response=await axios.get('/fetchUserPost')
+            const response=await axios.get('https://banao-hjcv.onrender.com/fetchUserPost')
             setUserPosts(response.data)
         } catch (error) {
             console.log("Error getting user post:",error)
@@ -32,7 +32,7 @@ const PostView=()=>{
 
     const fetchAllPost=async()=>{
         try {
-            const response=await axios.get('/feed')
+            const response=await axios.get('https://banao-hjcv.onrender.com/feed')
             setPosts(response.data)
         } catch (error) {
             console.log("Error getting user post:",error)
@@ -43,7 +43,7 @@ const PostView=()=>{
 
     const handleDelete=async(id)=>{
         try {
-            const response=await axios.delete(`/delete`,{data:{id}})
+            const response=await axios.delete(`https://banao-hjcv.onrender.com/delete`,{data:{id}})
             const updatedPosts = posts.filter(post=>post.id!==id)
             const updatedUserPosts = userPosts.filter(post=>post.id!==id)
             setPosts(updatedPosts)
@@ -61,7 +61,7 @@ const PostView=()=>{
 
     const handleLike=async(id,isPostLiked)=>{
         try {
-            const response=await axios.post('/like',{data:{id}})
+            const response=await axios.post('https://banao-hjcv.onrender.com/like',{data:{id}})
             console.log(response.data)
             const updatedLikedPosts = isPostLiked ? likedPosts.filter(postId=>postId!==id) : [...likedPosts,id]
             setLikedPosts(updatedLikedPosts)
@@ -72,7 +72,7 @@ const PostView=()=>{
 
     const getLikeForPosts=async()=>{
         try {
-            const response=await axios.get('/getLikes')
+            const response=await axios.get('https://banao-hjcv.onrender.com/getLikes')
             const likedPostIds=response.data.map(like=>like.postId)
             setLikedPosts(likedPostIds)
 
@@ -83,7 +83,7 @@ const PostView=()=>{
 
     const getCurrentUser=async()=>{
         try {
-            const response=await axios.get('/currentUser')
+            const response=await axios.get('https://banao-hjcv.onrender.com/currentUser')
             setCurrentUser(response.data)
             console.log(currentUser)
         } catch (error) {
@@ -93,7 +93,7 @@ const PostView=()=>{
 
     const getCurrentUserByToken=async()=>{
         try {
-            const response=await axios.get('/getCurrentUserByToken')
+            const response=await axios.get('https://banao-hjcv.onrender.com/getCurrentUserByToken')
             setUserId(response.data)
         } catch (error) {
             console.log("Error getting the data",error)
@@ -110,7 +110,7 @@ const PostView=()=>{
     },[])
 
     if (loadingUserPosts || loadingAllPosts) {
-        return <p>Loading...</p>; // You can replace this with a loading spinner or component
+        return <p>Loading...</p>
     }
 
     return(
@@ -124,7 +124,7 @@ const PostView=()=>{
                 <UserWrapper>
                     <h1>User</h1>
                     <UserCardContainer>
-                        <UserProfileImage src={`http://localhost:4000/uploads/${userId.image}`} alt="Error"/>
+                        <UserProfileImage src={`https://banao-hjcv.onrender.com/uploads/${userId.image}`} alt="Error"/>
                         <UserName>{userId.name}</UserName>
                         <UserEmail>{userId.email}</UserEmail>
                         <AddPostButton onClick={()=>setAddPost(true)}>Add Post <FontAwesomeIcon icon={faPlus}/></AddPostButton>
@@ -137,12 +137,12 @@ const PostView=()=>{
                             return(
                                 <CardContainer key={index}>
                                     <PostedBy>Posted By:{item.name}</PostedBy>
-                                    <UserProfileImage src={`http://localhost:4000/uploads/${userId.image}`} alt="Error"/>
+                                    <UserProfileImage src={`https://banao-hjcv.onrender.com/uploads/${userId.image}`} alt="Error"/>
                                     <p>{item.message}</p>
                                     <p>{item.email}</p>
                                     <p>User{item._id}</p>
                                     {item.image ? ( 
-                                        <Image src={`http://localhost:4000/uploads/${item.image}`} alt="Item Image"/>) : (<p></p>
+                                        <Image src={`https://banao-hjcv.onrender.com/uploads/${item.image}`} alt="Item Image"/>) : (<p></p>
                                     )}
                                     <Place>
                                         <StyledFontAwesomeIcon icon={faTrash} onClick={()=>{handleDelete(item._id)}}/>
@@ -162,11 +162,11 @@ const PostView=()=>{
                         return(
                             <CardContainer key={index}>
                                 <PostedBy as={ImportantText}>Posted By: {item.name}</PostedBy>
-                                <UserProfileImage src={`http://localhost:4000/uploads/${item.image}`} alt="Error"/>
+                                <UserProfileImage src={`https://banao-hjcv.onrender.com/uploads/${item.image}`} alt="Error"/>
                                 <p as={UserText}>Post: {item.message}</p>
                                 <p>User: {item._id}</p>
                                 {item.image ? ( 
-                                <Image src={`http://localhost:4000/uploads/${item.image}`} alt="Item Image"/>) : (<p></p>
+                                <Image src={`https://banao-hjcv.onrender.com/uploads/${item.image}`} alt="Item Image"/>) : (<p></p>
                                 )}
                                 <Place style={{paddingRight:"10px"}}>
                                     <FontAwesomeIcon icon={faHeart} onClick={()=>{handleLike(item._id,isPostLiked)}} style={{ color: isPostLiked ? 'red' : 'black' }}/>

@@ -25,7 +25,7 @@ const Login=()=>{
             password
         }
         try {
-            const response=await axios.post('/changePassword',data)
+            const response=await axios.post('https://banao-hjcv.onrender.com/changePassword',data)
             const result=response.data
             setRedirect(true)
             console.log(result)

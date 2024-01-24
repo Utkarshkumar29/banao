@@ -15,7 +15,7 @@ const Posting=({details,user})=>{
             data.append("photos", files[i])
         }
         try {
-            const response = await axios.post("/upload", data, {
+            const response = await axios.post("https://banao-hjcv.onrender.com/upload", data, {
                 headers: { "Content-Type": "multipart/form-data" },
         })
         const { data: filenames } = response
@@ -28,7 +28,7 @@ const Posting=({details,user})=>{
     const handleSubmit=async(e)=>{
         if(details){
             try {
-                const response=await axios.put(`/updatePost/:${details}`,{message,image})
+                const response=await axios.put(`https://banao-hjcv.onrender.com/updatePost/:${details}`,{message,image})
                 console.log(response.data)
                 await fetchPostData()
             } catch (error) {
@@ -43,7 +43,7 @@ const Posting=({details,user})=>{
                     email: user.email
                 }
             try {
-                const response=await axios.post('/post',data)
+                const response=await axios.post('https://banao-hjcv.onrender.com/post',data)
                 console.log(response.data)
             } catch (error) {
                 console.log("Error sending the data",error)
@@ -55,7 +55,7 @@ const Posting=({details,user})=>{
         if(details){
             console.log(true)
             try {
-                const response=await axios.get(`/getPost/:${details}`)
+                const response=await axios.get(`https://banao-hjcv.onrender.com/getPost/:${details}`)
                 console.log("Fetched data:", response.data);
                 setMessage(response.data.message)
                 setImage(response.data.image)

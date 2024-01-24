@@ -15,7 +15,7 @@ const Comments=({details})=>{
                 postId:details,
                 postedBy:madeBy
             }
-            const response=await axios.post('/comment',data)
+            const response=await axios.post('https://banao-hjcv.onrender.com/comment',data)
             await getComments()
         } catch (error) {
             console.log("Error sending the comment",error)
@@ -24,7 +24,7 @@ const Comments=({details})=>{
 
     const getComments=async()=>{
         try {
-            const response = await axios.get('/getComments', {
+            const response = await axios.get('https://banao-hjcv.onrender.com/getComments', {
                 params: {
                     postId: details
                 }
@@ -38,7 +38,7 @@ const Comments=({details})=>{
 
     const getUserForComment=async()=>{
         try {
-            const response=await axios.get('/getCurrentUserByToken')
+            const response=await axios.get('https://banao-hjcv.onrender.com/getCurrentUserByToken')
             setMadeBy(response.data.name)
         } catch (error) {
             console.log("Error getting the user",error)
